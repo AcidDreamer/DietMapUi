@@ -1,25 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/home/acid/Documents/projects/DietMap/DietMap.Client/DietMap.Client.csproj": {}
+    "G:\\Projects\\Blazor\\DietMap\\DietMap.Client\\DietMap.Client.csproj": {}
   },
   "projects": {
-    "/home/acid/Documents/projects/DietMap/DietMap.Client/DietMap.Client.csproj": {
+    "G:\\Projects\\Blazor\\DietMap\\DietMap.Client\\DietMap.Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/acid/Documents/projects/DietMap/DietMap.Client/DietMap.Client.csproj",
+        "projectUniqueName": "G:\\Projects\\Blazor\\DietMap\\DietMap.Client\\DietMap.Client.csproj",
         "projectName": "DietMap.Client",
-        "projectPath": "/home/acid/Documents/projects/DietMap/DietMap.Client/DietMap.Client.csproj",
-        "packagesPath": "/home/acid/.nuget/packages/",
-        "outputPath": "/home/acid/Documents/projects/DietMap/DietMap.Client/obj/",
+        "projectPath": "G:\\Projects\\Blazor\\DietMap\\DietMap.Client\\DietMap.Client.csproj",
+        "packagesPath": "C:\\Users\\Acid\\.nuget\\packages\\",
+        "outputPath": "G:\\Projects\\Blazor\\DietMap\\DietMap.Client\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/home/acid/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Acid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -78,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
