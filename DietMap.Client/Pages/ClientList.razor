@@ -1,6 +1,7 @@
 @page "/clientlist"
 @inject HttpClient Http
 @using Newtonsoft.Json
+@using DietMap.Client.Classes
 @inject NavigationManager NavigationManager
 
 <h1>List of all the active clients</h1>
@@ -28,8 +29,8 @@ else
             {
                 <tr>
                     <td>@client.FullName</td>
-                    <td>@client.CreatedAt.ToString()</td>
-                    <td>@client.LastVisit.ToString()</td>
+                    <td>@client.CreatedAt.ToString("yyyy/MM/dd")</td>
+                    <td>@client.LastVisit.ToString("yyyy/MM/dd")</td>
                     <td>        
                         <MatButton Raised="true" OnClick="@(_=>GoToAppointments(client))">Approintments</MatButton>
                     </td>
@@ -53,14 +54,4 @@ else
         Clients = JsonConvert.DeserializeObject<ClientsList>(clientRequest);
     }
 
-    public class ClientsList{
-        public List<Client> Clients { get; set; }
-    }
-    public class Client
-    {
-        public DateTime CreatedAt { get; set; }
-        public DateTime LastVisit { get; set; }
-        public string Id { get; set; }
-        public string FullName {get;set;}
-    }
 }
