@@ -1,0 +1,103 @@
+@page "/appointmentsList"
+@page "/appointmentsList/{clientId}/{clientName}"
+
+@inject HttpClient Http
+@using Newtonsoft.Json
+@using DietMap.Client.Classes
+
+<div class="headerApp">
+    <h1>List of appointments @ClientName</h1>
+</div>
+
+@if (SelectedAppointment == null)
+{
+    <div>
+        <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" 
+        xmlns="http://www.w3.org/2000/svg">
+            <circle class="circle" fill="none" stroke-width="6" stroke-linecap="round" 
+            cx="33" cy="33" r="30"></circle>
+        </svg>
+    </div>
+}
+else
+{
+    <div class="rowAppointments">
+        <div class="columnAppointments">
+            <MatButton Raised="true" Disabled="@CantGoBack" OnClick="@(_=>PreviousAppointment())">
+                Prev</MatButton>
+        </div>
+        <div class="columnAppointments">
+            <MatButton Raised="true" Disabled="@CantGoNext" OnClick="@(_=>NextAppointment())">
+                Next</MatButton>
+        </div>
+        <div class="columnAppointments">
+            <MatButton Raised="true" Disabled="@CantGoNext" OnClick="@(_=>GoToLast())">
+                Last</MatButton>
+        </div>
+
+    </div>
+    <div class="mainColumnAppointments">
+        <DietMap.Client.Components.AppointmentDetails 
+            appointment=SelectedAppointment/>
+    </div>
+
+}
+@code {
+
+    [Parameter]
+    public string ClientId {get;set;}
+    [Parameter]
+    public string ClientName {get;set;}
+    public Appointment SelectedAppointment {get;set;}
+    private AppointmentList appointments;
+    private bool CantGoBack{ get {
+        return CurrentAppointmentIndex <= 0;
+    }}
+    private bool CantGoNext{ get {
+        return CurrentAppointmentIndex >= FinalAppointment;
+    }}
+    private int CurrentAppointmentIndex { get {
+        if (SelectedAppointment == null)
+            return 0;
+        return appointments.AppointmentsList.IndexOf(SelectedAppointment);
+    }}
+    void NextAppointment()
+    {
+        SelectedAppointment = appointments.AppointmentsList[CurrentAppointmentIndex + 1];
+    }
+    void GoToLast()
+    {
+        SelectedAppointment = appointments.AppointmentsList[FinalAppointment];
+    }
+
+    void PreviousAppointment()
+    {
+        SelectedAppointment = appointments.AppointmentsList[CurrentAppointmentIndex - 1];
+    }
+
+
+    private int FinalAppointment {
+        get{
+            if (appointments == null)
+                return 0;
+            if (appointments.AppointmentsList == null)
+                return 0;
+            return appointments.AppointmentsList.Count - 1;
+    }}
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Initialized with " + ClientId);
+        if(!string.IsNullOrEmpty(ClientId))
+        {
+            var appointmentRequest = await Http.GetStringAsync("sample-data/"+ClientId+".json");
+            appointments = JsonConvert.DeserializeObject<AppointmentList>(appointmentRequest);
+            if(appointments.AppointmentsList.Count != 0)
+                SelectedAppointment = appointments.AppointmentsList[0];
+        }
+        else
+        {
+            appointments = null;
+        }
+    }
+}

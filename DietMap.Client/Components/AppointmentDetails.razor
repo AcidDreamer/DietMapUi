@@ -1,0 +1,75 @@
+
+@using DietMap.Client.Classes
+<div class="appointmentDetails">
+    <div class="card card-5 appointmentDetailsCard">
+        <MatCard class="demo-mat-card">
+            <div class="demo-mat-card-content">
+                <MatHeadline6 class="demo-mat-card-clean-margin">
+                    @appointment.Date.ToString()
+                </MatHeadline6>
+                <MatSubtitle2 class="demo-mat-card-clean-margin">
+                    @appointment.AppointmentNumber
+                </MatSubtitle2>
+            </div>
+            <MatCardContent>
+                <MatBody2 class="demo-mat-card-content demo-mat-card-clean-margin">
+                    <MatList>
+                        <MatListItem>
+                            Weight @appointment.Measurements.Weight
+                        </MatListItem>
+                        <MatListItem>
+                            BMI @appointment.Measurements.BMI
+                        </MatListItem>
+                        <MatListItem>
+                            Body Fat @appointment.Measurements.BodyFat
+                        </MatListItem>
+                        <MatListItem>
+                            BMR @appointment.Measurements.BMR
+                        </MatListItem>
+                        <MatListItem>
+                            Body Water @appointment.Measurements.BodyWater
+                        </MatListItem>
+                        <MatListItem>
+                            Muscle Mass @appointment.Measurements.MuscleMass
+                        </MatListItem>
+                        <MatListItem>
+                            Metabolic Age @appointment.Measurements.MetabolicAge
+                        </MatListItem>
+                        <MatListItem>
+                            Visceral Fat @appointment.Measurements.VisceralFat
+                        </MatListItem>
+                        <MatListItem>
+                            Bone Mass @appointment.Measurements.BoneMass
+                        </MatListItem>
+                        <MatListItem>
+                            Muscle Quality @appointment.Measurements.MuscleQuality
+                        </MatListItem>
+                        <MatListItem>
+                            Physique Rating @appointment.Measurements.PhysiqueRating
+                        </MatListItem>
+                    </MatList>
+                </MatBody2>
+            </MatCardContent>
+        </MatCard>
+    </div>
+    <div class="appointmentNotes">
+        <div class="headerApp">
+            <h1>Notes</h1>
+        </div>
+        <MatList SingleSelection="true" class="appointmentNotes">
+            @foreach(var note in appointment.Notes)
+            {
+                <MatListItem>
+                        @note
+                </MatListItem>
+                <MatListDivider></MatListDivider>
+            }
+        </MatList>
+    </div>
+</div>
+
+@code
+{
+    [Parameter]
+    public Appointment appointment {get;set;}
+}

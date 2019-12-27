@@ -1,0 +1,22 @@
+{
+    "clients" : [
+        {
+            "id" : "motherfucking3",
+            "fullName" : "Makys o protos",
+            "lastVisit" : "2019-12-26T18:52",
+            "createdAt" : "2019-12-26T18:52"
+        },
+        {
+            "id" : "motherfucking2",
+            "fullName" : "Makys o deuteros",
+            "lastVisit" : "2019-12-26T18:52",
+            "createdAt" : "2019-12-26T18:52"
+        },
+        {
+            "id" : "motherfucking",
+            "fullName" : "Makys o tritos",
+            "lastVisit" : "2019-12-26T18:52",
+            "createdAt" : "2019-12-26T18:52"
+        }
+    ]
+}

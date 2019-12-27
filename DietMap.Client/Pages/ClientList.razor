@@ -1,0 +1,66 @@
+@page "/clientlist"
+@inject HttpClient Http
+@using Newtonsoft.Json
+@inject NavigationManager NavigationManager
+
+<h1>List of all the active clients</h1>
+@if (Clients == null)
+{
+    <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" 
+    xmlns="http://www.w3.org/2000/svg">
+        <circle class="circle" fill="none" stroke-width="6" stroke-linecap="round" 
+        cx="33" cy="33" r="30"></circle>
+    </svg>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>First Visit</th>
+                <th>Last Visit</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in Clients.Clients)
+            {
+                <tr>
+                    <td>@client.FullName</td>
+                    <td>@client.CreatedAt.ToString()</td>
+                    <td>@client.LastVisit.ToString()</td>
+                    <td>        
+                        <MatButton Raised="true" OnClick="@(_=>GoToAppointments(client))">Approintments</MatButton>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private ClientsList Clients;
+    void GoToAppointments(Client client)
+    {
+        NavigationManager.NavigateTo($"appointmentsList/{client.Id}/{client.FullName}");
+    }
+ 
+
+    protected override async Task OnInitializedAsync()
+    {
+        var clientRequest = await Http.GetStringAsync("sample-data/clientList.json");
+        Clients = JsonConvert.DeserializeObject<ClientsList>(clientRequest);
+    }
+
+    public class ClientsList{
+        public List<Client> Clients { get; set; }
+    }
+    public class Client
+    {
+        public DateTime CreatedAt { get; set; }
+        public DateTime LastVisit { get; set; }
+        public string Id { get; set; }
+        public string FullName {get;set;}
+    }
+}

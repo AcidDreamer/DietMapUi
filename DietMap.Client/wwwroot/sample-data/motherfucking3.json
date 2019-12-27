@@ -1,0 +1,67 @@
+{
+    "AppointmentsList" : [
+        {
+            "measurements" : {
+                "Weight" : 102.3,
+                "BMI" :26.1,
+                "BodyFat" : 22.5,
+                "BMR" : 2.391,
+                "BodyWater" : 54.6,
+                "MuscleMass" : 75.35,
+                "MetabolicAge" : 34,
+                "VisceralFat" : 5.5,
+                "BoneMass" : 3.9,
+                "MuscleQuality" : 64,
+                "PhysiqueRating" : 2
+            },
+            "notes" : [
+                "thicc butt",
+                "no chili"
+            ],
+            "date" : "2019-12-26T18:52",
+            "appointmentNumber" : 1
+        },
+        {
+            "measurements" : {
+                "Weight" : 102.3,
+                "BMI" :26.1,
+                "BodyFat" : 22.5,
+                "BMR" : 2.391,
+                "BodyWater" : 54.6,
+                "MuscleMass" : 75.35,
+                "MetabolicAge" : 34,
+                "VisceralFat" : 5.5,
+                "BoneMass" : 3.9,
+                "MuscleQuality" : 64,
+                "PhysiqueRating" : 2
+            },
+            "notes" : [
+                "thicc butt",
+                "no chili"
+            ],
+            "date" : "2019-12-26T18:52",
+            "appointmentNumber" : 2
+        },
+        {
+            "measurements" : {
+                "Weight" : 102.3,
+                "BMI" :26.1,
+                "BodyFat" : 22.5,
+                "BMR" : 2.391,
+                "BodyWater" : 54.6,
+                "MuscleMass" : 75.35,
+                "MetabolicAge" : 34,
+                "VisceralFat" : 5.5,
+                "BoneMass" : 3.9,
+                "MuscleQuality" : 64,
+                "PhysiqueRating" : 2
+            },
+            "notes" : [
+                "thicc butt",
+                "no chili"
+            ],
+            "date" : "2019-12-26T18:52",
+            "appointmentNumber" : 3
+        }
+    ]
+}
