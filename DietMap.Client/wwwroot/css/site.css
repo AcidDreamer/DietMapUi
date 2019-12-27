@@ -330,3 +330,16 @@ svg:nth-child(1){stroke:#9c27b0;}
     margin-left: 10%;
     margin-right: 10%;
 }
+
+.positiveChange {
+    color: green;
+    margin-left:20px;
+}
+.noChange {
+    color: darkgray;
+    margin-left: 20px;
+}
+.negativeChange {
+    color: red;
+    margin-left: 20px;
+}

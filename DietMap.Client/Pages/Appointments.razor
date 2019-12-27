@@ -38,7 +38,7 @@ else
     </div>
     <div class="mainColumnAppointments">
         <DietMap.Client.Components.AppointmentDetails 
-            appointment=SelectedAppointment/>
+            appointment=SelectedAppointment previousAppointment=previousAppointment />
     </div>
 
 }
@@ -49,6 +49,8 @@ else
     [Parameter]
     public string ClientName {get;set;}
     public Appointment SelectedAppointment {get;set;}
+    public Appointment previousAppointment {get;set;}
+
     private AppointmentList appointments;
     private bool CantGoBack{ get {
         return CurrentAppointmentIndex <= 0;
@@ -61,17 +63,28 @@ else
             return 0;
         return appointments.AppointmentsList.IndexOf(SelectedAppointment);
     }}
-    void NextAppointment()
+
+    async Task NextAppointment()
     {
+        previousAppointment = null;
+        await Task.Delay(10);
+
+        previousAppointment = SelectedAppointment;
         SelectedAppointment = appointments.AppointmentsList[CurrentAppointmentIndex + 1];
+        StateHasChanged();
     }
-    void GoToLast()
+    async Task GoToLast()
     {
+        previousAppointment = null;
+        await Task.Delay(10);
+        previousAppointment = SelectedAppointment;
         SelectedAppointment = appointments.AppointmentsList[FinalAppointment];
+        StateHasChanged();
     }
 
     void PreviousAppointment()
     {
+        previousAppointment = null;
         SelectedAppointment = appointments.AppointmentsList[CurrentAppointmentIndex - 1];
     }
 
