@@ -1,23 +1,6 @@
 @page "/measurement/new"
 @using DietMap.Client.Classes
 
-<style>
-    .newMeasurementText{
-        height: 220px;
-        margin-top: 80px;
-        box-shadow: 4px 4px 0px #4B0082;
-
-    }
-    .submitMeasurement{
-        margin-top: 80px;
-    }
-    .newMeasurementWrap{
-        width: 80%;
-        display: inline-block;
-        text-align: center;
-    }
-</style>
-
 <div>
     <div class="text-field-container newMeasurementWrap">
         <MatTextField class="newMeasurementText" @bind-Value="@MeasurementStr" Label="Tanita's List" TextArea="true"></MatTextField>
@@ -33,12 +16,7 @@
     public string MeasurementStr {get;set;}
     public void SubmitMeasurement()
     {
-        var cleanStr = ClearString(MeasurementStr);
-        var lines = cleanStr.Split(
-            new[] { "\r\n", "\r", "\n" },
-            StringSplitOptions.None
-        );
-
+        var lines = ClearAndSeparateString(MeasurementStr);
         var measurement = MakeMeasurement(lines);
         Console.WriteLine(JsonConvert.SerializeObject(measurement));
     }
@@ -99,7 +77,7 @@
         return meas;
     }
 
-    private string ClearString(string toClean)
+    private string[] ClearAndSeparateString(string toClean)
     {
         var tmp = "";
         tmp = toClean.Replace("•","");
@@ -109,6 +87,27 @@
         tmp = tmp.Replace("%","");
         tmp = tmp.Replace("years","");
         tmp = tmp.Replace("mq","");
-        return tmp;
+        var lines = tmp.Split(
+            new[] { "\r\n", "\r", "\n" },
+            StringSplitOptions.None
+        );
+        return lines;
     }
 }
+
+<style>
+    .newMeasurementText{
+        height: 220px;
+        margin-top: 80px;
+        box-shadow: 4px 4px 0px #4B0082;
+
+    }
+    .submitMeasurement{
+        margin-top: 80px;
+    }
+    .newMeasurementWrap{
+        width: 80%;
+        display: inline-block;
+        text-align: center;
+    }
+</style>
