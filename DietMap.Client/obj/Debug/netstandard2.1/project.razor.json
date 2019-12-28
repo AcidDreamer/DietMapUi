@@ -205,55 +205,6 @@
       },
       {
         "Kind": "Components.Component",
-        "Name": "DietMap.Client.Pages.ClientList",
-        "AssemblyName": "DietMap.Client",
-        "Documentation": null,
-        "TagOutputHint": null,
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "ClientList",
-            "ParentTag": null,
-            "TagStructure": 0,
-            "Attributes": [],
-            "Diagnostics": []
-          }
-        ],
-        "BoundAttributes": [],
-        "AllowedChildTags": [],
-        "Diagnostics": [],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "DietMap.Client.Pages.ClientList"
-        }
-      },
-      {
-        "Kind": "Components.Component",
-        "Name": "DietMap.Client.Pages.ClientList",
-        "AssemblyName": "DietMap.Client",
-        "Documentation": null,
-        "TagOutputHint": null,
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "DietMap.Client.Pages.ClientList",
-            "ParentTag": null,
-            "TagStructure": 0,
-            "Attributes": [],
-            "Diagnostics": []
-          }
-        ],
-        "BoundAttributes": [],
-        "AllowedChildTags": [],
-        "Diagnostics": [],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "DietMap.Client.Pages.ClientList",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "Kind": "Components.Component",
         "Name": "DietMap.Client.Pages.NewMeasurement",
         "AssemblyName": "DietMap.Client",
         "Documentation": null,
@@ -454,6 +405,55 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "DietMap.Client.Pages.NewClient",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "Kind": "Components.Component",
+        "Name": "DietMap.Client.Pages.ClientList",
+        "AssemblyName": "DietMap.Client",
+        "Documentation": null,
+        "TagOutputHint": null,
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "ClientList",
+            "ParentTag": null,
+            "TagStructure": 0,
+            "Attributes": [],
+            "Diagnostics": []
+          }
+        ],
+        "BoundAttributes": [],
+        "AllowedChildTags": [],
+        "Diagnostics": [],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "DietMap.Client.Pages.ClientList"
+        }
+      },
+      {
+        "Kind": "Components.Component",
+        "Name": "DietMap.Client.Pages.ClientList",
+        "AssemblyName": "DietMap.Client",
+        "Documentation": null,
+        "TagOutputHint": null,
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "DietMap.Client.Pages.ClientList",
+            "ParentTag": null,
+            "TagStructure": 0,
+            "Attributes": [],
+            "Diagnostics": []
+          }
+        ],
+        "BoundAttributes": [],
+        "AllowedChildTags": [],
+        "Diagnostics": [],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "DietMap.Client.Pages.ClientList",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },

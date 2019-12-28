@@ -28,6 +28,7 @@ else
                 <th>First Visit</th>
                 <th>Last Visit</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -42,19 +43,49 @@ else
                         <td>No appointments</td>
                     }
                     <td>        
-                        <MatButton Raised="true" OnClick="@(_=>GoToAppointments(client))">Approintments</MatButton>
+                        <MatButton Raised="true" Disabled=!client.LastVisit.HasValue OnClick="@(_=>GoToAppointments(client))">Approintments</MatButton>
+                    </td>
+                    <td>        
+                        <MatButton Raised="true" OnClick="@(_=> ConfirmClientDelete(client))">Delete</MatButton>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+<MatDialog @bind-IsOpen="@deleteDialogIsOpen">
+<MatDialogTitle>Are you sure you want to delete @clientToDelete?.FullName ?</MatDialogTitle>
+<MatDialogActions>
+    <MatButton OnClick="@(e => { deleteDialogIsOpen = false; })">No</MatButton>
+    <MatButton OnClick="@(_=> DeleteClient(clientToDelete))">Yes</MatButton>
+</MatDialogActions>
+</MatDialog>
+
 }
 
 @code {
+    private bool deleteDialogIsOpen {get;set;} = false;
+    private Client clientToDelete {get;set;}
     private ClientsList Clients;
     void GoToNewClient()
     {
         NavigationManager.NavigateTo($"newclient");
+    }
+
+
+    void ConfirmClientDelete(Client client)
+    {
+        clientToDelete = client;
+        deleteDialogIsOpen = true;
+    }
+
+    async Task DeleteClient(Client client)
+    {
+        var clientRequest = await Http.PostAsync($"https://us-central1-dietmap-c519e.cloudfunctions.net/clientsApi/client/delete/{client.Id}",null);
+        if (clientRequest.StatusCode == System.Net.HttpStatusCode.OK){
+            Clients.Clients = Clients.Clients.Where(c => c.Id != client.Id).ToList();
+            clientToDelete = null;
+        }
+        deleteDialogIsOpen = false;
     }
 
     void GoToAppointments(Client client)
@@ -67,6 +98,7 @@ else
     {
         var clientRequest = await Http.GetStringAsync("https://us-central1-dietmap-c519e.cloudfunctions.net/clientsApi/clients");
         Clients = JsonConvert.DeserializeObject<ClientsList>(clientRequest);
+        Clients.Clients = Clients.Clients.OrderBy(c => c.FullName).ToList();
     }
 
 }
