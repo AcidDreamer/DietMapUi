@@ -106,3 +106,5 @@
 /home/acid/Documents/projects/DietMap/DietMap.Client/obj/Debug/netstandard2.1/DietMap.Client.pdb
 /home/acid/Documents/projects/DietMap/DietMap.Client/obj/Debug/netstandard2.1/blazor/linker.descriptor.xml
 /home/acid/Documents/projects/DietMap/DietMap.Client/obj/Debug/netstandard2.1/blazor/blazor.boot.json
+/home/acid/Documents/projects/DietMap/DietMap.Client/obj/Debug/netstandard2.1/RazorDeclaration/Pages/NewClient.razor.g.cs
+/home/acid/Documents/projects/DietMap/DietMap.Client/obj/Debug/netstandard2.1/Razor/Pages/NewClient.razor.g.cs

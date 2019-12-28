@@ -3,7 +3,7 @@
 
 @inject HttpClient Http
 @using Newtonsoft.Json
-@using DietMap.Client.Classes
+@using DietMap.Client.BindingModels
 @inject NavigationManager NavigationManager
 
 <div class="headerApp">
@@ -41,7 +41,7 @@ else
 
     </div>
     <div class="mainColumnAppointments">
-        <DietMap.Client.Components.AppointmentDetails 
+        <AppointmentDetails 
             appointment=SelectedAppointment previousAppointment=previousAppointment />
     </div>
 

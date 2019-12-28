@@ -1,0 +1,52 @@
+@page "/newclient"
+@inject HttpClient Http
+@using DietMap.Client.BindingModels
+@using System.Text
+@using System.Net
+@using Client.FormModels
+@inject NavigationManager NavigationManager
+
+<h1>New Client</h1>
+<EditForm Model="@newClient" OnValidSubmit=NewClientRequest>
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <div class="newClientWrapper">
+            <MatTextField class="newClientText" @bind-Value=newClient.FullName Label="Clients name"></MatTextField>
+        </div>
+    </div>
+    <div>
+        <div class="newClientWrapper">
+            <MatButton class="submitMeasurement" Raised="true" >Submit</MatButton>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    public NewClientModel newClient {get;set;} = new NewClientModel();
+    async Task NewClientRequest()
+    {
+        newClient.TrimName();
+        var stringPayload =  JsonConvert.SerializeObject(newClient);
+        var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+        var result = await Http.PostAsync("https://us-central1-dietmap-c519e.cloudfunctions.net/clientsApi/client",httpContent);
+        if (result.StatusCode == HttpStatusCode.OK || result.StatusCode == HttpStatusCode.Created)
+        {
+            NavigationManager.NavigateTo("clientlist");
+        }
+    }
+}
+<style>
+.newClientText{
+    margin-top: 80px;
+    margin-bottom: 80px;
+    box-shadow: 4px 4px 0px #4B0082;
+}
+.newClientWrapper{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+    text-align: center;
+}
+</style>

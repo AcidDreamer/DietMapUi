@@ -36,6 +36,16 @@ function CreateClientServer(_db) {
       'Client with name ' + client.fullname + ' created!'
     );
   });
+  clientsServer.post('/client/delete/:id', async (request, response) => {
+    let name = request.body["fullname"];
+    let newClientId = uuid.v1();
+    let docRef = db.collection(clientCollection).doc(newClientId);
+    var client = new Client(newClientId, name);
+    await docRef.set(JSON.parse(JSON.stringify(client)));
+    response.send(
+      'Client with name ' + client.fullname + ' created!'
+    );
+  });
 
   clientsServer.post('/test', (request, response) => {
     response.send(

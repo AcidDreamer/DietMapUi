@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 
-namespace DietMap.Client.Classes
+namespace DietMap.Client.BindingModels
 {
-
     public class AppointmentList
     {
         public List<Appointment> AppointmentsList { get; set; }

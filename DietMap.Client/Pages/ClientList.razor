@@ -1,10 +1,16 @@
 @page "/clientlist"
 @inject HttpClient Http
 @using Newtonsoft.Json
-@using DietMap.Client.Classes
+@using DietMap.Client.BindingModels
 @inject NavigationManager NavigationManager
 
-<h1>List of all the active clients</h1>
+<div class="headerApp">
+    <h1>List of all the active clients</h1>
+    <MatButton class="newClientBtn" Raised="true" OnClick="@(_=>GoToNewClient())">
+        New Client
+    </MatButton>
+</div>
+
 @if (Clients == null)
 {
     <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" 
@@ -30,7 +36,11 @@ else
                 <tr>
                     <td>@client.FullName</td>
                     <td>@client.CreatedAt.ToString("yyyy/MM/dd")</td>
-                    <td>@client.LastVisit.ToString("yyyy/MM/dd")</td>
+                    @if(client.LastVisit.HasValue){
+                        <td>@client.LastVisit.Value.ToString("yyyy/MM/dd")</td>
+                    }else{
+                        <td>No appointments</td>
+                    }
                     <td>        
                         <MatButton Raised="true" OnClick="@(_=>GoToAppointments(client))">Approintments</MatButton>
                     </td>
@@ -42,6 +52,11 @@ else
 
 @code {
     private ClientsList Clients;
+    void GoToNewClient()
+    {
+        NavigationManager.NavigateTo($"newclient");
+    }
+
     void GoToAppointments(Client client)
     {
         NavigationManager.NavigateTo($"appointmentsList/{client.Id}/{client.FullName}");
@@ -50,8 +65,15 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        var clientRequest = await Http.GetStringAsync("sample-data/clientList.json");
+        var clientRequest = await Http.GetStringAsync("https://us-central1-dietmap-c519e.cloudfunctions.net/clientsApi/clients");
         Clients = JsonConvert.DeserializeObject<ClientsList>(clientRequest);
     }
 
 }
+
+<style>
+.newClientBtn{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+</style>
