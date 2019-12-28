@@ -1,0 +1,114 @@
+@page "/measurement/new"
+@using DietMap.Client.Classes
+
+<style>
+    .newMeasurementText{
+        height: 220px;
+        margin-top: 80px;
+        box-shadow: 4px 4px 0px #4B0082;
+
+    }
+    .submitMeasurement{
+        margin-top: 80px;
+    }
+    .newMeasurementWrap{
+        width: 80%;
+        display: inline-block;
+        text-align: center;
+    }
+</style>
+
+<div>
+    <div class="text-field-container newMeasurementWrap">
+        <MatTextField class="newMeasurementText" @bind-Value="@MeasurementStr" Label="Tanita's List" TextArea="true"></MatTextField>
+    </div>
+</div>
+<div>
+    <div class="newMeasurementWrap">
+        <MatButton class="submitMeasurement" Raised="true" OnClick="@(_=>SubmitMeasurement())">Submit</MatButton>
+    </div>
+</div>
+
+@code{
+    public string MeasurementStr {get;set;}
+    public void SubmitMeasurement()
+    {
+        var cleanStr = ClearString(MeasurementStr);
+        var lines = cleanStr.Split(
+            new[] { "\r\n", "\r", "\n" },
+            StringSplitOptions.None
+        );
+
+        var measurement = MakeMeasurement(lines);
+        Console.WriteLine(JsonConvert.SerializeObject(measurement));
+    }
+    private Measurements MakeMeasurement(string[] lines)
+    {
+        var meas = new Measurements();
+        foreach(var line in lines){
+            var tmp = line.Split(":");
+            if (tmp.Length != 2)
+                continue;
+            tmp[1] = tmp[1].Trim();
+            tmp[0] = tmp[0].Trim();
+            if(tmp[0] == "Weight")
+            {
+                meas.Weight = decimal.Parse(tmp[1]);
+            }
+            else if (tmp[0] == "BMI")
+            {
+                meas.BMI = decimal.Parse(tmp[1]);
+            }
+             else if (tmp[0] == "Body fat")
+            {
+                meas.BodyFat = decimal.Parse(tmp[1]);
+            }
+             else if (tmp[0] == "BMR")
+            {
+                meas.BMR = double.Parse(tmp[1]);
+            }
+             else if (tmp[0] == "Body water")
+            {
+                meas.BodyWater = decimal.Parse(tmp[1]);
+            }
+             else if (tmp[0] == "Muscle mass")
+            {
+                meas.MuscleMass = decimal.Parse(tmp[1]);
+            }
+            else if (tmp[0] == "Metabolic age")
+            {
+                meas.MetabolicAge = int.Parse(tmp[1]);
+            }
+            else if (tmp[0] == "Visceral fat")
+            {
+                meas.VisceralFat = decimal.Parse(tmp[1]);
+            }
+            else if (tmp[0] == "Bone mass")
+            {
+                meas.BoneMass = decimal.Parse(tmp[1]);
+            }
+            else if (tmp[0] == "Muscle quality")
+            {
+                meas.MuscleQuality = int.Parse(tmp[1]);
+            }
+            else if (tmp[0] == "Physique rating")
+            {
+                meas.PhysiqueRating = int.Parse(tmp[1]);
+            }
+        }
+        return meas;
+    }
+
+    private string ClearString(string toClean)
+    {
+        var tmp = "";
+        tmp = toClean.Replace("•","");
+        tmp = tmp.Replace("kg","");
+        tmp = tmp.Replace("bmi","");
+        tmp = tmp.Replace("kcal","");
+        tmp = tmp.Replace("%","");
+        tmp = tmp.Replace("years","");
+        tmp = tmp.Replace("mq","");
+        return tmp;
+    }
+}

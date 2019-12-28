@@ -65,6 +65,13 @@ using MatBlazor;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 9 "/home/acid/Documents/projects/DietMap/DietMap.Client/_Imports.razor"
+using Newtonsoft.Json;
+
+#line default
+#line hidden
+#nullable disable
     public partial class SurveyPrompt : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998

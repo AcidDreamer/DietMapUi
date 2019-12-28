@@ -4,9 +4,13 @@
 @inject HttpClient Http
 @using Newtonsoft.Json
 @using DietMap.Client.Classes
+@inject NavigationManager NavigationManager
 
 <div class="headerApp">
     <h1>List of appointments @ClientName</h1>
+    <MatButton class="newAppointmentBtn" Raised="true" OnClick="@(_=>NewAppointment())">
+        New Appointment
+    </MatButton>
 </div>
 
 @if (SelectedAppointment == null)
@@ -63,7 +67,10 @@ else
             return 0;
         return appointments.AppointmentsList.IndexOf(SelectedAppointment);
     }}
-
+    
+    void NewAppointment(){
+        NavigationManager.NavigateTo($"/measurement/new");
+    }
     async Task NextAppointment()
     {
         previousAppointment = null;
@@ -100,7 +107,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        Console.WriteLine("Initialized with " + ClientId);
         if(!string.IsNullOrEmpty(ClientId))
         {
             var appointmentRequest = await Http.GetStringAsync("sample-data/"+ClientId+".json");
@@ -114,3 +120,9 @@ else
         }
     }
 }
+
+<style>
+.newAppointmentBtn{
+    margin-top: 40px;
+}
+</style>

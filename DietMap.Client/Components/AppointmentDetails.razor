@@ -72,4 +72,65 @@
 {
     [Parameter]
     public Appointment appointment {get;set;}
+    [Parameter]
+    public Appointment previousAppointment {get;set;}    
 }
+
+<style>
+    .card-5 {
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+.appointmentDetails{
+    text-align: center;
+    display: inline-block;
+    width:100%;
+    margin:20px;
+}
+
+.appointmentDetailsCard{
+    margin-top:20px;
+    width: 100%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.appointmentNotes{
+    margin-top: 80px;
+    margin-bottom: 80px;
+    text-align: center;
+}
+.columnAppointments {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    text-align: center;
+}
+
+.mainColumnAppointments {
+    float: left;
+    width: 80%;
+    padding: 10px;
+}
+
+.rowAppointments{
+    display: table;
+    height:100%;
+    width: 100%;
+}
+.rowAppointments:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+  
+.headerApp{
+    text-align: center;
+    width: 100%;
+}
+.appointmentNotes{
+    text-align: center;
+    width: inherit;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+</style>
