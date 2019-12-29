@@ -4,6 +4,7 @@
 @using System.Text
 @using System.Net
 @using Client.FormModels
+@using DietMap.Client.Enumerations
 @inject NavigationManager NavigationManager
 
 <h1>New Client</h1>
@@ -14,6 +15,12 @@
     <div>
         <div class="newClientWrapper">
             <MatTextField class="newClientText" @bind-Value=newClient.FullName Label="Clients name"></MatTextField>
+            <MatH5>Gender</MatH5>
+            <MatRadioGroup @bind-Value=newClient.Gender TValue="Gender" >
+                <MatRadioButton Value=Gender.Male TValue="Gender" Label="Male"></MatRadioButton>
+                <MatRadioButton Value=Gender.Female TValue="Gender" Label="Female"></MatRadioButton>
+            </MatRadioGroup>
+
         </div>
     </div>
     <div>

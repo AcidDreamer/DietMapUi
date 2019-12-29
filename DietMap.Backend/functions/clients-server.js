@@ -28,9 +28,10 @@ function CreateClientServer(_db) {
   //Create client
   clientsServer.post('/client', async (request, response) => {
     let name = request.body["fullname"];
+    let gender = request.body["gender"];
     let newClientId = uuid.v1();
     let docRef = db.collection(clientCollection).doc(newClientId);
-    var client = new Client(newClientId, name);
+    var client = new Client(newClientId, name,gender);
     await docRef.set(JSON.parse(JSON.stringify(client)));
     response.send(
       'Client with name ' + client.fullname + ' created!'
