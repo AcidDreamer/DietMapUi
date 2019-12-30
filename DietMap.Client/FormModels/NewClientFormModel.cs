@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 using DietMap.Client.Enumerations;
+using System;
 namespace DietMap.Client.FormModels
 {
     public class NewClientModel
@@ -24,6 +25,9 @@ namespace DietMap.Client.FormModels
         [JsonProperty("email")]
         public string Email { get; set; }
 
+        [Required]
+        [JsonProperty("birthDate")]
+        public DateTime BirthDate { get; set; }
 
         public void TrimName(){
             FullName = FullName.TrimEnd();
