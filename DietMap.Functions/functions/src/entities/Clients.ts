@@ -1,8 +1,15 @@
-class Client {
-    constructor(id, fullname,gender,phone,email) {
+export class Client {
+    fullname :string;
+    gender : number;
+    lastVisit? : Date;
+    createdAt : Date;
+    id:string;
+    phone? : string;
+    email:string;
+    constructor(id: string , fullname: string,gender: number,phone: string,email: string) {
         this.fullname = fullname;
         this.gender = gender;
-        this.lastVisit = null;
+        this.lastVisit = undefined;
         this.createdAt = new Date();
         this.id = id;
         if (phone){
@@ -13,7 +20,3 @@ class Client {
         }else {this.email = "";}
     }
 }
-
-module.exports = {
-    Client : Client
-};
